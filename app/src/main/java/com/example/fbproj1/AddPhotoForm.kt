@@ -77,39 +77,47 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
                         val btmap = bitmap!!
                         val tags: ArrayList<String> = ArrayList<String>()
 
-                        val fbImg = FirebaseVisionImage.fromBitmap(btmap)
-                        val labeler = FirebaseVision.getInstance().getOnDeviceImageLabeler()
+                        val photo: PhotoCardItem = PhotoCardItem(url, title, date, tags)
+                        photos.add(photo)
 
-                        labeler.processImage(fbImg)
-                            .addOnSuccessListener { labels ->
+                        val intentReturn: Intent = Intent()
+                        intentReturn.putExtra("photos", photos)
+                        setResult(Activity.RESULT_OK, intentReturn)
+                        finish()
 
-                                for (label in labels) {
-                                    val text = label.text
-                                    val entityId = label.entityId
-                                    val confidence = label.confidence
-
-                                    if (confidence >= 0.5) {
-                                        tags.add(text)
-                                    }
-
-                                }
-
-                                val photo: PhotoCardItem = PhotoCardItem(url, title, date, tags)
-                                photos.add(photo)
-
-                                val intentReturn: Intent = Intent()
-                                intentReturn.putExtra("photos", photos)
-                                setResult(Activity.RESULT_OK, intentReturn)
-                                finish()
-                            }
-                            .addOnFailureListener { e ->
-                                e.printStackTrace()
-
-                                val intentReturn: Intent = Intent()
-                                setResult(Activity.RESULT_CANCELED, intentReturn)
-                                finish()
-                            }
-                    }
+//                        val fbImg = FirebaseVisionImage.fromBitmap(btmap)
+//                    val labeler = FirebaseVision.getInstance().getOnDeviceImageLabeler()
+//
+//                    labeler.processImage(fbImg)
+//                    .addOnSuccessListener { labels ->
+//
+//                        for (label in labels) {
+//                            val text = label.text
+//                            val entityId = label.entityId
+//                            val confidence = label.confidence
+//
+//                            if (confidence >= 0.5) {
+//                                tags.add(text)
+//                            }
+//
+//                        }
+//
+//                        val photo: PhotoCardItem = PhotoCardItem(url, title, date, tags)
+//                        photos.add(photo)
+//
+//                        val intentReturn: Intent = Intent()
+//                        intentReturn.putExtra("photos", photos)
+//                        setResult(Activity.RESULT_OK, intentReturn)
+//                        finish()
+//                    }
+//                    .addOnFailureListener { e ->
+//                        e.printStackTrace()
+//
+//                        val intentReturn: Intent = Intent()
+//                        setResult(Activity.RESULT_CANCELED, intentReturn)
+//                        finish()
+//                    }
+                }
                 })
 
 

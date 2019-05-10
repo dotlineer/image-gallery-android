@@ -31,7 +31,7 @@
                                                                  android:layout_height="wrap_content"
                                                                  android:hint="Url"
                                                                  android:inputType="textUri"
-        />
+                                                                 android:text="https://cdn.pixabay.com/photo/2019/05/02/10/50/bird-4173109_960_720.jpg"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 

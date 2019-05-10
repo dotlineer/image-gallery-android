@@ -1,15 +1,22 @@
 package com.example.fbproj1
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
 class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoCardItem>) : java.io.Serializable, RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+
+
 
     val MAX_TAGS = 3
 
@@ -34,6 +41,8 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
         }
 
         holder.tvDate.text = mDataList[position].pciDate
+
+
     }
 
     override fun getItemCount(): Int {
@@ -41,10 +50,25 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
     }
 
     inner class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        init {
+            itemView.setOnClickListener( View.OnClickListener() {
+                Log.d("CLICK", "wow-clicked!");
+                Log.d("CLICK", mDataList.get(adapterPosition).pciTitle);
+
+                val intnt: Intent = Intent(itemView.context, DetailsOfPhoto::class.java)
+                intnt.putExtra("index", adapterPosition)
+//                startActivity(intnt)
+                startActivity(itemView.context, intnt, null)
+            }
+            )
+        }
+
         internal var ivImg: ImageView = itemView.findViewById(R.id.pci_img) as ImageView
         internal var tvTitle: TextView = itemView.findViewById(R.id.pci_title) as TextView
         internal var tvTags: TextView = itemView.findViewById(R.id.pci_tags) as TextView
         internal var tvDate: TextView = itemView.findViewById(R.id.pci_date) as TextView
+
     }
 
 }
