@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 
-class PhotoCardItem(val pciUrl: String, val pciTitle: String, val pciDate: String, val pciTags: ArrayList<String>) : java.io.Serializable, AppCompatActivity() {
+class PhotoCardItem(val pciUrl: String = "", val pciTitle: String = "", val pciDate: String = "", val pciTags: ArrayList<String> = ArrayList<String>()) : java.io.Serializable, AppCompatActivity() {
 
     override fun toString(): String {
         var strBuf: StringBuffer = StringBuffer()

@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoCardItem>) : java.io.Serializable, RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoCardItem> = ArrayList<PhotoCardItem>()) : java.io.Serializable, RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
 
 
@@ -53,11 +53,13 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
 
         init {
             itemView.setOnClickListener( View.OnClickListener() {
+                System.out.println("CLICKED!!!");
                 Log.d("CLICK", "wow-clicked!");
                 Log.d("CLICK", mDataList.get(adapterPosition).pciTitle);
 
                 val intnt: Intent = Intent(itemView.context, DetailsOfPhoto::class.java)
-                intnt.putExtra("index", adapterPosition)
+                val photoToPass: PhotoCardItem = mDataList[adapterPosition];
+                intnt.putExtra("photo", photoToPass)
 //                startActivity(intnt)
                 startActivity(itemView.context, intnt, null)
             }
