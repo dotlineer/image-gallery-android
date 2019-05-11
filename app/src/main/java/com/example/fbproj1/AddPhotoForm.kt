@@ -63,7 +63,9 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
 
             Picasso.get()
                 .load(url)
-                .resize(50, 50).centerCrop().into(object: com.squareup.picasso.Target {
+                .resize(500, 500)
+                .centerInside()
+                .into(object: com.squareup.picasso.Target {
                     override fun onBitmapFailed(e: java.lang.Exception?, errorDrawable: Drawable?) {
                     }
 

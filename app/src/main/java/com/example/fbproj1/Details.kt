@@ -16,10 +16,12 @@ import android.view.MenuItem
 import java.util.ArrayList
 
 
-class Details(var photo: PhotoCardItem) : AppCompatActivity() {
+class Details : AppCompatActivity() {
 
     private lateinit var mSectionsPagerAdapter: SectionsPagerAdapter;
     private lateinit var mViewPager: ViewPager;
+    private lateinit var photo: PhotoCardItem;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -6,9 +6,14 @@
              tools:context=".fragFullPhoto">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <ImageView
+            android:id="@+id/ivFull"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="FULL PHOTO"/>
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+    />
 
 </FrameLayout>

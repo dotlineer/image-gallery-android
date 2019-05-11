@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,7 +39,6 @@ class FragFullPhoto(val pci: PhotoCardItem) : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -49,6 +49,14 @@ class FragFullPhoto(val pci: PhotoCardItem) : Fragment() {
 
         return inflater.inflate(R.layout.fragment_frag_full_photo, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val iv: ImageView = getView()!!.findViewById(R.id.ivFull) as ImageView
+        iv.setImageBitmap(pci.pciBitmapDataObj.currentImage)
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
