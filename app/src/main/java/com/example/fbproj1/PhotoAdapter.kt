@@ -57,7 +57,8 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
                 Log.d("CLICK", "wow-clicked!");
                 Log.d("CLICK", mDataList.get(adapterPosition).pciTitle);
 
-                val intnt: Intent = Intent(itemView.context, DetailsOfPhoto::class.java)
+//                val intnt: Intent = Intent(itemView.context, DetailsOfPhoto::class.java)
+                val intnt: Intent = Intent(itemView.context, Details::class.java)
                 val photoToPass: PhotoCardItem = mDataList[adapterPosition];
                 intnt.putExtra("photo", photoToPass)
 //                startActivity(intnt)
