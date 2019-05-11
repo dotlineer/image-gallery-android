@@ -2,6 +2,7 @@ package com.example.fbproj1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 //import android.widget.Toolbar
@@ -12,9 +13,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import android.view.Menu
 import android.view.MenuItem
+import java.util.ArrayList
 
 
-class Details : AppCompatActivity() {
+class Details(var photo: PhotoCardItem) : AppCompatActivity() {
 
     private lateinit var mSectionsPagerAdapter: SectionsPagerAdapter;
     private lateinit var mViewPager: ViewPager;
@@ -22,6 +24,9 @@ class Details : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+
+        photo = intent.getSerializableExtra("photo") as PhotoCardItem
+        Log.d("PASSED", photo.pciUrl)
 
         val toolbar = findViewById(R.id.mytoolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -58,7 +63,7 @@ class Details : AppCompatActivity() {
         override fun getItem(position: Int): Fragment? {
             var fragment: Fragment? = null
             when (position) {
-                0 -> fragment = FragFullPhoto()
+                0 -> fragment = FragFullPhoto(photo)
                 1 -> fragment = Frag2()
             }
             return fragment

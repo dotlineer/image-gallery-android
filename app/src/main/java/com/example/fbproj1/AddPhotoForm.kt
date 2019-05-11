@@ -74,10 +74,12 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
                         val title: String = findViewById<TextInputLayout>(R.id.til_title).editText!!.text.toString()
                         val date: String = findViewById<TextInputLayout>(R.id.til_date).editText!!.text.toString()
 
-                        val btmap = bitmap!!
                         val tags: ArrayList<String> = ArrayList<String>()
 
-                        val photo: PhotoCardItem = PhotoCardItem(url, title, date, tags)
+                        val pciBitmapToAdd: Bitmap = bitmap!!
+                        val pciBitmapDataObjToAdd: BitmapDataObject = BitmapDataObject(pciBitmapToAdd)
+
+                        val photo: PhotoCardItem = PhotoCardItem(url, title, date, tags, pciBitmapDataObjToAdd)
                         photos.add(photo)
 
                         val intentReturn: Intent = Intent()

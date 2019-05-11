@@ -2,6 +2,7 @@ package com.example.fbproj1
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,9 +27,13 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-        val url: String = mDataList[position].pciUrl
+//        val url: String = mDataList[position].pciUrl
+        val bitmap: Bitmap = mDataList[position].pciBitmapDataObj.currentImage
 
-        Picasso.get().load(url).into(holder.ivImg)
+//        Picasso.get().load(url).into(holder.ivImg)
+
+        holder.ivImg.setImageBitmap(bitmap);
+
         holder.tvTitle.text = mDataList[position].pciTitle
         holder.tvTags.setText("")
 
