@@ -33,7 +33,8 @@ class Details : AppCompatActivity() {
 
         val toolbar = findViewById(R.id.mytoolbar) as Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+//        supportActionBar!!.
 
         mSectionsPagerAdapter = SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -55,7 +56,7 @@ class Details : AppCompatActivity() {
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        val id = item.getItemId()
 //
-//        return if (id == R.id.action_settings) {
+//        return if (id == R.id.) {
 //            true
 //        } else super.onOptionsItemSelected(item)
 //    }
@@ -85,5 +86,9 @@ class Details : AppCompatActivity() {
         }
     }
 
+//    override fun onNavigateUp(): Boolean {
+//        onBackPressed()
+//        return true
+//    }
 
 }

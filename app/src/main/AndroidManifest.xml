@@ -13,32 +13,43 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
         <activity android:name=".Details"
                   android:parentActivityName=".MainActivity"
+                  android:screenOrientation="portrait"
         >
         </activity>
+
         <activity
                 android:name=".PhotoDetails"
                 android:label="@string/title_activity_photo_details"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".DetailsOfPhoto">
-        </activity> <!-- tools:replace="android:appComponentFactory" -->
-        <activity android:name=".AddPhotoForm">
+
+        <activity android:name=".AddPhotoForm"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".PhotoAdapter">
+
+        <activity android:name=".PhotoAdapter"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".PhotoCardItem">
+
+        <activity android:name=".PhotoCardItem"
+                  android:screenOrientation="portrait">
         </activity>
+
         <activity
                 android:name=".MainActivity"
-                android:theme="@style/AppTheme">
+                android:theme="@style/AppTheme"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -19,6 +19,11 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import java.text.DateFormat
 import java.util.*
+import android.R.array
+import android.util.Log
+import java.util.Arrays.asList
+
+
 
 
 class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  {
@@ -63,7 +68,7 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
 
             Picasso.get()
                 .load(url)
-                .resize(500, 500)
+                .resize(250, 250)
                 .centerInside()
                 .into(object: com.squareup.picasso.Target {
                     override fun onBitmapFailed(e: java.lang.Exception?, errorDrawable: Drawable?) {
@@ -76,7 +81,10 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
                         val title: String = findViewById<TextInputLayout>(R.id.til_title).editText!!.text.toString()
                         val date: String = findViewById<TextInputLayout>(R.id.til_date).editText!!.text.toString()
 
-                        val tags: ArrayList<String> = ArrayList<String>()
+//                        val tags: ArrayList<String> = ArrayList<String>(Arrays.asList(findViewById<TextInputLayout>(R.id.til_tags).editText!!.text.toString().trim().split("\\s+")))
+                        val arOfTags: List<String> = findViewById<TextInputLayout>(R.id.til_tags).editText!!.text.toString().trim().split(" ")
+                        val tags: ArrayList<String> = ArrayList(arOfTags)
+                        Log.d("ARR", tags.size.toString())
 
                         val pciBitmapToAdd: Bitmap = bitmap!!
                         val pciBitmapDataObjToAdd: BitmapDataObject = BitmapDataObject(pciBitmapToAdd)

@@ -53,8 +53,11 @@ class FragDataAndSimilar(val photo: PhotoCardItem, val photoCollection: ArrayLis
         val fragmentManager: FragmentManager? = fragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction();
 
-        val fPhotoData = FragPhotoData(photo)
+        val fPhotoData: Fragment = FragPhotoData(photo)
+        val fSimilarPhotos: Fragment = FragSimilarPhotos(photo, photoCollection)
+
         fragmentTransaction.replace(R.id.fl_top_data, fPhotoData)
+        fragmentTransaction.replace(R.id.fl_bottom_similar, fSimilarPhotos)
         fragmentTransaction.commit()
     }
 

@@ -40,7 +40,7 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
         var i = 0
         for (tag in mDataList[position].pciTags) {
             if (i<MAX_TAGS-1) {
-                holder.tvTags.append(tag + "; ")
+                holder.tvTags.append(tag + " ")
             }
             i += 1
         }

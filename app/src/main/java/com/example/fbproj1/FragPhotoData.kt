@@ -55,7 +55,7 @@ class FragPhotoData(val photo: PhotoCardItem) : Fragment() {
 
         view.findViewById<TextView>(R.id.tv_title_data).text = photo.pciTitle
         view.findViewById<TextView>(R.id.tv_date_data).text = photo.pciDate
-        view.findViewById<TextView>(R.id.tv_tags_data).text = photo.pciTags.toString()
+        view.findViewById<TextView>(R.id.tv_tags_data).text = photo.getFormattedTagString()
 
 
 //        val flTop: FrameLayout = getView()!!.findViewById(R.id.fl_top_data) as FrameLayout

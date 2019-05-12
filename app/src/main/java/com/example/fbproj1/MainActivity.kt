@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,7 +17,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private val ADD_NEW_PHOTO = 990
-    val photos: ArrayList<PhotoCardItem> = ArrayList(10)
+    var photos: ArrayList<PhotoCardItem> = ArrayList(10)
     lateinit var adapter: PhotoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         photos.ensureCapacity(10)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_photos) as RecyclerView
+        val recyclerView = findViewById(R.id.rv_photos) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         adapter = PhotoAdapter(this, photos)
         recyclerView.adapter = adapter
@@ -93,5 +94,34 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        outState?.putSerializable("photos", photos)
+        Log.d("ACTIVITY_LIFECYCLE", "onSaveInstanceState")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        savedInstanceState!!
+        photos = savedInstanceState.getSerializable("photos") as ArrayList<PhotoCardItem>
+
+        photos!!
+        println("THIS IS PHOTOS: " + photos)
+        System.out.println("THIS IS PHOTOS: " + photos)
+        Log.d("PHOTOS", photos.toString())
+
+        if (photos == null) {
+            Log.d("TAG2", "PHOTOS IS NULL")
+        }
+        else {
+            Log.d("TAG2", "PHOTOS NOT NULL")
+        }
+
+//        adapter.notifyDataSetChanged()
+        Log.d("ACTIVITY_LIFECYCLE", "onRestoreInstanceState")
+    }
 
 }
