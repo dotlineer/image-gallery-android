@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+// SOURCE: http://www.java2s.com/Code/Android/2D-Graphics/extendsBaseAdaptertocreateImageadapter.htm
+
 public class ImageAdapterGridView extends BaseAdapter {
     private Context context;
     private ArrayList<PhotoCardItem> photoCollection;

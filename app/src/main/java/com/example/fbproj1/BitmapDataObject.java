@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
+// SOURCE: https://stackoverflow.com/questions/5871482/serializing-and-de-serializing-android-graphics-bitmap-in-java/36519516#36519516
+
 public class BitmapDataObject implements Serializable {
 
     private Bitmap currentImage;
