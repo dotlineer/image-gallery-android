@@ -66,6 +66,7 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
                 val intnt: Intent = Intent(itemView.context, Details::class.java)
                 val photoToPass: PhotoCardItem = mDataList[adapterPosition];
                 intnt.putExtra("photo", photoToPass)
+                intnt.putExtra("photosCollection", mDataList)
 //                startActivity(intnt)
                 startActivity(itemView.context, intnt, null)
             }

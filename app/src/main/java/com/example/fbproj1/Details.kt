@@ -21,6 +21,7 @@ class Details : AppCompatActivity() {
     private lateinit var mSectionsPagerAdapter: SectionsPagerAdapter;
     private lateinit var mViewPager: ViewPager;
     private lateinit var photo: PhotoCardItem;
+    private lateinit var photosCollection: ArrayList<PhotoCardItem>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class Details : AppCompatActivity() {
         setContentView(R.layout.activity_details)
 
         photo = intent.getSerializableExtra("photo") as PhotoCardItem
-        Log.d("PASSED", photo.pciUrl)
+        photosCollection = intent.getSerializableExtra("photoCollection") as ArrayList<PhotoCardItem>
 
         val toolbar = findViewById(R.id.mytoolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -66,7 +67,7 @@ class Details : AppCompatActivity() {
             var fragment: Fragment? = null
             when (position) {
                 0 -> fragment = FragFullPhoto(photo)
-                1 -> fragment = Frag2()
+                1 -> fragment = FragDataAndSimilar(photo, photosCollection);
             }
             return fragment
         }
