@@ -8,15 +8,19 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <fragment
+
+
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:name="com.example.fbproj1.FragPhotoData"
-                android:id="@+id/frag_photo_data"
-                android:layout_weight="1"/>
-        <fragment
+                android:layout_height="match_parent"
+                android:layout_weight="1" android:id="@+id/fl_top_data">
+        </FrameLayout>
+
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:name="com.example.fbproj1.FragSimilarPhotos"
-                android:id="@+id/frag_similar_photos"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1" android:id="@+id/fl_bottom_similar">
+        </FrameLayout>
+
     </LinearLayout>
 </FrameLayout>

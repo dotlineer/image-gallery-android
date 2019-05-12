@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +41,21 @@ class FragDataAndSimilar(val photo: PhotoCardItem, val photoCollection: ArrayLis
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_frag_data_and_similar, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val flTop: FrameLayout = getView()!!.findViewById(R.id.fl_top_data) as FrameLayout
+        val flBottom: FrameLayout = getView()!!.findViewById(R.id.fl_bottom_similar) as FrameLayout
+
+        val fragmentManager: FragmentManager? = fragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction();
+
+        val fPhotoData = FragPhotoData(photo)
+        fragmentTransaction.replace(R.id.fl_top_data, fPhotoData)
+        fragmentTransaction.commit()
     }
 
 

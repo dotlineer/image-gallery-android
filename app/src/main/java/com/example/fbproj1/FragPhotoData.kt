@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class FragPhotoData : Fragment() {
+class FragPhotoData(val photo: PhotoCardItem) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,6 +48,24 @@ class FragPhotoData : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_frag_photo_data, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.tv_title_data).text = photo.pciTitle
+        view.findViewById<TextView>(R.id.tv_date_data).text = photo.pciDate
+        view.findViewById<TextView>(R.id.tv_tags_data).text = photo.pciTags.toString()
+
+
+//        val flTop: FrameLayout = getView()!!.findViewById(R.id.fl_top_data) as FrameLayout
+//        val flBottom: FrameLayout = getView()!!.findViewById(R.id.fl_bottom_similar) as FrameLayout
+//
+//        val fragmentManager: FragmentManager? = fragmentManager
+//        val fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction();
+//
+//        val fPhotoData = FragPhotoData()
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -80,23 +103,24 @@ class FragPhotoData : Fragment() {
         fun onFragmentInteraction(uri: Uri)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment fragPhotoData.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragPhotoData().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+//    companion object {
+//        /**
+//         * Use this factory method to create a new instance of
+//         * this fragment using the provided parameters.
+//         *
+//         * @param param1 Parameter 1.
+//         * @param param2 Parameter 2.
+//         * @return A new instance of fragment fragPhotoData.
+//         */
+//        // TODO: Rename and change types and number of parameters
+//        @JvmStatic
+//        fun newInstance(param1: String, param2: String) =
+//            FragPhotoData().apply {
+//                arguments = Bundle().apply {
+//                    putString(ARG_PARAM1, param1)
+//                    putString(ARG_PARAM2, param2)
+//                }
+//            }
+//    }
+
 }
