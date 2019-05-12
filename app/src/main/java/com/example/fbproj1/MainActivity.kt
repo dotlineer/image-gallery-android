@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -38,9 +37,6 @@ class MainActivity : AppCompatActivity() {
         adapter = PhotoAdapter(this, photos)
         recyclerView.adapter = adapter
 
-
-
-//        val cv = findViewById<>(R.id.)
 
         val ith = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
@@ -97,31 +93,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-
         outState?.putSerializable("photos", photos)
-        Log.d("ACTIVITY_LIFECYCLE", "onSaveInstanceState")
     }
+
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-
-        savedInstanceState!!
-        photos = savedInstanceState.getSerializable("photos") as ArrayList<PhotoCardItem>
-
-        photos!!
-        println("THIS IS PHOTOS: " + photos)
-        System.out.println("THIS IS PHOTOS: " + photos)
-        Log.d("PHOTOS", photos.toString())
-
-        if (photos == null) {
-            Log.d("TAG2", "PHOTOS IS NULL")
-        }
-        else {
-            Log.d("TAG2", "PHOTOS NOT NULL")
-        }
-
-//        adapter.notifyDataSetChanged()
-        Log.d("ACTIVITY_LIFECYCLE", "onRestoreInstanceState")
+        photos = savedInstanceState!!.getSerializable("photos") as ArrayList<PhotoCardItem>
     }
 
 }

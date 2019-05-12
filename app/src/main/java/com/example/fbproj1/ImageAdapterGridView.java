@@ -9,9 +9,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class ImageAdapterGridView extends BaseAdapter
-{
-
+public class ImageAdapterGridView extends BaseAdapter {
     private Context context;
     private ArrayList<PhotoCardItem> photoCollection;
 
@@ -20,16 +18,10 @@ public class ImageAdapterGridView extends BaseAdapter
         this.photoCollection = photoCollection;
     }
 
-//    public ImageAdapterGridView(Context context, ArrayList<PhotoCardItem> photoCollection) {
-//        this.photoCollection = photoCollection;
-//    }
-
-    //---returns the number of images---
     public int getCount() {
         return photoCollection.size();
     }
 
-    //---returns the ID of an item---
     public Object getItem(int position) {
         return position;
     }
@@ -38,9 +30,7 @@ public class ImageAdapterGridView extends BaseAdapter
         return position;
     }
 
-    //---returns an ImageView view---
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(context);
@@ -53,4 +43,5 @@ public class ImageAdapterGridView extends BaseAdapter
         imageView.setImageBitmap(photoCollection.get(position).getPciBitmapDataObj().getCurrentImage());
         return imageView;
     }
+
 }

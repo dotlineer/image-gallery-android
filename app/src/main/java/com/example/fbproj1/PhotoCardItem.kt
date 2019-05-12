@@ -1,11 +1,7 @@
 package com.example.fbproj1
 
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import java.lang.StringBuilder
 
 class PhotoCardItem(val pciUrl: String = "", val pciTitle: String = "", val pciDate: String = "", val pciTags: ArrayList<String> = ArrayList<String>(), val pciBitmapDataObj: BitmapDataObject) : java.io.Serializable, AppCompatActivity() {
@@ -21,6 +17,7 @@ class PhotoCardItem(val pciUrl: String = "", val pciTitle: String = "", val pciD
         return strBuf.toString()
     }
 
+
     fun getFormattedTagString(): String {
         val tagString: StringBuilder = StringBuilder()
         for (tag in pciTags) {
@@ -29,28 +26,12 @@ class PhotoCardItem(val pciUrl: String = "", val pciTitle: String = "", val pciD
         return tagString.toString()
     }
 
-//    fun getPhotosWithAMatchingTag(): ArrayList<String> {
-//        val arRet: ArrayList<String> = ArrayList(pciTags.filter { tag -> tag.equals(tagToMatch)})
-//        return arRet
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_card_item)
     }
 
-//    fun getPhotosWithAMatchingTag(referencePhoto: PhotoCardItem, photoCollection: ArrayList<PhotoCardItem>): ArrayList<PhotoCardItem> {
-//        val picturesThatShareAtLeastOneTag: ArrayList<PhotoCardItem> = ArrayList<PhotoCardItem>()
-//        for (photoFromCollection in photoCollection) {
-//            val referencePhotoTempTagArray = ArrayList<String>(referencePhoto.pciTags)
-//            referencePhotoTempTagArray.retainAll(photoFromCollection.pciTags)
-//            if (!referencePhotoTempTagArray.isEmpty()) {
-//                picturesThatShareAtLeastOneTag.add(photoFromCollection)
-//            }
-////            val commonTags: ArrayList<PhotoCardItem> = referencePhoto.pciTags.retainAll(photoFromCollection.pciTags)
-//        }
-//        return picturesThatShareAtLeastOneTag
-//    }
 
     override fun equals(other: Any?): Boolean{
         if (this === other) return true
@@ -70,19 +51,30 @@ class PhotoCardItem(val pciUrl: String = "", val pciTitle: String = "", val pciD
     fun getPhotosWithAMatchingTag(photoCollection: ArrayList<PhotoCardItem>): ArrayList<PhotoCardItem> {
         val referencePhoto = this
         val photoCollectionWithoutReferenePhoto: ArrayList<PhotoCardItem> = ArrayList(photoCollection.filter {curPhoto -> !curPhoto.equals(referencePhoto) })
-        //        val arRet: ArrayList<String> = ArrayList(pciTags.filter { tag -> tag.equals(tagToMatch)})
-
-
         val picturesThatShareAtLeastOneTag: ArrayList<PhotoCardItem> = ArrayList<PhotoCardItem>()
+        var i = 0
+
         for (photoFromCollection in photoCollectionWithoutReferenePhoto) {
-            val referencePhotoTempTagArray = ArrayList<String>(referencePhoto.pciTags)
-            referencePhotoTempTagArray.retainAll(photoFromCollection.pciTags)
-            if (!referencePhotoTempTagArray.isEmpty()) {
-                picturesThatShareAtLeastOneTag.add(photoFromCollection)
+            if (i < MAX_SIMILAR_PHOTOS) {
+                val referencePhotoTempTagArray = ArrayList<String>(referencePhoto.pciTags)
+                referencePhotoTempTagArray.retainAll(photoFromCollection.pciTags)
+                if (!referencePhotoTempTagArray.isEmpty()) {
+                    picturesThatShareAtLeastOneTag.add(photoFromCollection)
+                }
             }
-//            val commonTags: ArrayList<PhotoCardItem> = referencePhoto.pciTags.retainAll(photoFromCollection.pciTags)
+            else {
+                break
+            }
+            i += 1
         }
         return picturesThatShareAtLeastOneTag
     }
 
+
+    companion object {
+        val MAX_SIMILAR_PHOTOS = 6
+    }
+
 }
+
+

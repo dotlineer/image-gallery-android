@@ -17,8 +17,6 @@ import com.squareup.picasso.Picasso
 
 class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoCardItem> = ArrayList<PhotoCardItem>()) : java.io.Serializable, RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
-
-
     val MAX_TAGS = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -27,13 +25,9 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-//        val url: String = mDataList[position].pciUrl
         val bitmap: Bitmap = mDataList[position].pciBitmapDataObj.currentImage
 
-//        Picasso.get().load(url).into(holder.ivImg)
-
         holder.ivImg.setImageBitmap(bitmap);
-
         holder.tvTitle.text = mDataList[position].pciTitle
         holder.tvTags.setText("")
 
@@ -46,8 +40,6 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
         }
 
         holder.tvDate.text = mDataList[position].pciDate
-
-
     }
 
     override fun getItemCount(): Int {
@@ -58,16 +50,10 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
 
         init {
             itemView.setOnClickListener( View.OnClickListener() {
-                System.out.println("CLICKED!!!");
-                Log.d("CLICK", "wow-clicked!");
-                Log.d("CLICK", mDataList.get(adapterPosition).pciTitle);
-
-//                val intnt: Intent = Intent(itemView.context, DetailsOfPhoto::class.java)
                 val intnt: Intent = Intent(itemView.context, Details::class.java)
                 val photoToPass: PhotoCardItem = mDataList[adapterPosition];
                 intnt.putExtra("photo", photoToPass)
                 intnt.putExtra("photoCollection", mDataList)
-//                startActivity(intnt)
                 startActivity(itemView.context, intnt, null)
             }
             )
@@ -77,7 +63,6 @@ class PhotoAdapter(val context: Context, private val mDataList: ArrayList<PhotoC
         internal var tvTitle: TextView = itemView.findViewById(R.id.pci_title) as TextView
         internal var tvTags: TextView = itemView.findViewById(R.id.pci_tags) as TextView
         internal var tvDate: TextView = itemView.findViewById(R.id.pci_date) as TextView
-
     }
 
 }

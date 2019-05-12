@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.squareup.picasso.Picasso
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -19,10 +17,6 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import java.text.DateFormat
 import java.util.*
-import android.R.array
-import android.util.Log
-import java.util.Arrays.asList
-
 
 
 
@@ -81,10 +75,8 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
                         val title: String = findViewById<TextInputLayout>(R.id.til_title).editText!!.text.toString()
                         val date: String = findViewById<TextInputLayout>(R.id.til_date).editText!!.text.toString()
 
-//                        val tags: ArrayList<String> = ArrayList<String>(Arrays.asList(findViewById<TextInputLayout>(R.id.til_tags).editText!!.text.toString().trim().split("\\s+")))
                         val arOfTags: List<String> = findViewById<TextInputLayout>(R.id.til_tags).editText!!.text.toString().trim().split(" ")
                         val tags: ArrayList<String> = ArrayList(arOfTags)
-                        Log.d("ARR", tags.size.toString())
 
                         val pciBitmapToAdd: Bitmap = bitmap!!
                         val pciBitmapDataObjToAdd: BitmapDataObject = BitmapDataObject(pciBitmapToAdd)
@@ -96,45 +88,8 @@ class AddPhotoForm() : AppCompatActivity(), DatePickerDialog.OnDateSetListener  
                         intentReturn.putExtra("photos", photos)
                         setResult(Activity.RESULT_OK, intentReturn)
                         finish()
-
-//                        val fbImg = FirebaseVisionImage.fromBitmap(btmap)
-//                    val labeler = FirebaseVision.getInstance().getOnDeviceImageLabeler()
-//
-//                    labeler.processImage(fbImg)
-//                    .addOnSuccessListener { labels ->
-//
-//                        for (label in labels) {
-//                            val text = label.text
-//                            val entityId = label.entityId
-//                            val confidence = label.confidence
-//
-//                            if (confidence >= 0.5) {
-//                                tags.add(text)
-//                            }
-//
-//                        }
-//
-//                        val photo: PhotoCardItem = PhotoCardItem(url, title, date, tags)
-//                        photos.add(photo)
-//
-//                        val intentReturn: Intent = Intent()
-//                        intentReturn.putExtra("photos", photos)
-//                        setResult(Activity.RESULT_OK, intentReturn)
-//                        finish()
-//                    }
-//                    .addOnFailureListener { e ->
-//                        e.printStackTrace()
-//
-//                        val intentReturn: Intent = Intent()
-//                        setResult(Activity.RESULT_CANCELED, intentReturn)
-//                        finish()
-//                    }
                 }
                 })
-
-
-
-
         })
 
     }

@@ -16,10 +16,6 @@ public class BitmapDataObject implements Serializable {
         return currentImage;
     }
 
-    public void setCurrentImage(Bitmap currentImage) {
-        this.currentImage = currentImage;
-    }
-
     public BitmapDataObject(Bitmap bitmap)
     {
         currentImage = bitmap;
@@ -33,7 +29,6 @@ public class BitmapDataObject implements Serializable {
 
         out.writeInt(byteArray.length);
         out.write(byteArray);
-
     }
 
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
